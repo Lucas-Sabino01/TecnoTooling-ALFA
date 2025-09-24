@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ActionButtonProps {
   label: string;
@@ -8,9 +9,10 @@ interface ActionButtonProps {
   variant: "primary" | "destructive" | "secondary";
   onClick?: () => void;
   className?: string;
+  path?: string;
 }
 
-export const ActionButton = ({ label, icon: Icon, variant, onClick, className }: ActionButtonProps) => {
+export const ActionButton = ({ label, icon: Icon, variant, onClick, className, path }: ActionButtonProps) => {
   const getVariantStyles = () => {
     switch (variant) {
       case "primary":
@@ -24,14 +26,21 @@ export const ActionButton = ({ label, icon: Icon, variant, onClick, className }:
     }
   };
 
+  if (path) {
+    return (
+      <Button asChild className={cn("h-12 px-6 font-medium transition-all", getVariantStyles(), className)}>
+        <Link to={path}>
+          <Icon className="mr-2 h-5 w-5" />
+          {label}
+        </Link>
+      </Button>
+    );
+  }
+
   return (
     <Button
       onClick={onClick}
-      className={cn(
-        "h-12 px-6 font-medium transition-all",
-        getVariantStyles(),
-        className
-      )}
+      className={cn("h-12 px-6 font-medium transition-all", getVariantStyles(), className)}
     >
       <Icon className="mr-2 h-5 w-5" />
       {label}

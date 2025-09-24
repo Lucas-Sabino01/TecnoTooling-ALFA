@@ -1,9 +1,12 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { MainLayout } from "@/layouts/MainLayout";
-import DashboardPage from "../pages/DashBoard"; 
-import { LoginPage } from "../pages/LoginPage";
-import EmptyPage from "../pages/EmptyPage";
+import DashboardPage from "../pages/home/DashBoard"; 
+import LoginForm from "../pages/LoginPage";
+import EmptyPage from "../pages/home/EmptyPage";
 import NotFound from "../pages/NotFound";
+import CadastrosHomePage from "../pages/Almoxarifado/AlmoxarifadoPage";
+import CadastrarItemPage from "../pages/Cadastro de Item/CadastrodeItem";
+
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +20,18 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardPage />,
+      },
+      { 
+        path: "/cadastros/itens", 
+        element: <CadastrosHomePage /> 
+      },
+      { 
+        path: "/cadastros/itens/novo", 
+        element: <CadastrarItemPage /> 
+      },
+      { 
+        path: "/cadastros/fornecedores", 
+        element: <EmptyPage title="Cadastro de Fornecedores" description="Administração dos fornecedores da empresa" /> 
       },
       // Rotas de Estoque
       { path: "/estoque/consultar", element: <EmptyPage title="Consultar Itens" description="Sistema para consulta de todos os itens do estoque com filtros avançados" /> },
@@ -42,7 +57,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/login", // Rota de login para teste
-    element: <LoginPage />,
+    element: <LoginForm />,
   },
   {
     path: "*", // Rota para "Não Encontrado" (catch-all)

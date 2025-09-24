@@ -1,4 +1,3 @@
-import { MainLayout } from "@/layouts/MainLayout";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Construction } from "lucide-react";
 
